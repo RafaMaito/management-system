@@ -3,19 +3,31 @@
 use Illuminate\Support\Facades\Route;
 
 // using an string in the callback() place the laravel wait a controler method. 
-Route::get('/',[\App\Http\Controllers\PrincipalController::class,'principal']);
+Route::get('/',[\App\Http\Controllers\HomeController::class,'home'])->name('site.home');
 
-Route::get('/about-us', function () {
-    return 'Hello world about-us';
- });
+Route::get('/about-us',[\App\Http\Controllers\AboutUsController::class,'aboutus'])->name('site.aboutus');
  
- Route::get('/contact', function () {
-    return 'Hello world contact';
- });
+Route::get('/contact',[\App\Http\Controllers\ContactController::class,'contact'])->name('site.contact');
  
- Route::get('/contact/{name}', function ($name) {
-   return $name;
+Route::get('/login', function () {
+   return 'Login';
+})->name('site.login');
+
+Route::prefix('market')->group(function() {
+    Route::get('/users', function () {
+        return 'Users';
+    })->name('market.users');
+    Route::get('/clients', function () {
+        return 'Clients';
+    })->name('market.clients');
+    Route::get('/suppliers', function () {
+        return 'Suppliers';
+    })->name('market.suppliers');
+    Route::get('/products', function () {
+        return 'Products';
+    })->name('market.products');
 });
+
 
 // Route::get('/contact/{name}/{category_id}', function ($name, $category_id) {
 //    return $name . ' - ' . $category_id;

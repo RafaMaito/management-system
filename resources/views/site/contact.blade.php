@@ -1,7 +1,7 @@
 <h3>Contact</h3>
 
 <ul>
-   
+
     <li>
         <a href="/">Home</a>
     </li>
