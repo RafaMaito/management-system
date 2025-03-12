@@ -28,7 +28,9 @@ Route::prefix('market')->group(function() {
     })->name('market.products');
 });
 
-
+Route::fallback(function() {
+    return 'The page you are looking for does not exist. Go back to the <a href="' . route('site.home') . '">home page</a>';
+});
 // Route::get('/contact/{name}/{category_id}', function ($name, $category_id) {
 //    return $name . ' - ' . $category_id;
    
