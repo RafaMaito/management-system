@@ -9,5 +9,8 @@
     <body>
         @include('site.layouts._partials.header')
         @yield('content')
+        @unless (Route::is('site.home'))
+            @include('site.layouts._partials.footer')
+        @endunless
     </body>
 </html>
