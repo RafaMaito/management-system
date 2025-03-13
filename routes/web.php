@@ -20,9 +20,7 @@ Route::prefix('market')->group(function() {
     Route::get('/clients', function () {
         return 'Clients';
     })->name('market.clients');
-    Route::get('/suppliers', function () {
-        return 'Suppliers';
-    })->name('market.suppliers');
+    Route::get('/suppliers',[\App\Http\Controllers\SupplierController::class,'index'])->name('market.supplier');
     Route::get('/products', function () {
         return 'Products';
     })->name('market.products');
