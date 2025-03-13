@@ -1,14 +1,18 @@
-<h3>About Us</h3>
+@extends('site.layouts.base')
 
-<ul>
+@section('title', 'About us')
 
-    <li>
-        <a href="{{ route('site.home') }}">Home</a>
-    </li>
-    <li>
-        <a href="{{ route('site.aboutus') }}">About us</a>
-    </li>
-    <li>
-        <a href="{{ route('site.contact') }}">Contact</a>
-    </li>
-</ul>
+@section('content')
+
+    <div class="page-content">
+        <div class="page-title">
+            <h1>We are Management System</h1>
+        </div>
+
+        <div class="page-info">
+            <p>Management System is the online administrative control system that can transform and enhance your company's
+                business.</p>
+            <p>Developed with the highest technology to help you focus on what matters most—your business!</p>
+        </div>
+    </div>
+@endsection

@@ -1,14 +1,21 @@
-<h3>Contact</h3>
+@extends('site.layouts.base')
 
-<ul>
+@section('title', $title)
 
-    <li>
-        <a href="{{ route('site.home') }}">Home</a>
-    </li>
-    <li>
-        <a href="{{ route('site.aboutus') }}">About us</a>
-    </li>
-    <li>
-        <a href="{{ route('site.contact') }}">Contact</a>
-    </li>
-</ul>
+@section('content')
+
+<div class="page-content">
+    <div class="page-title">
+        <h1>Get in Touch with Us</h1>
+    </div>
+
+    <div class="page-info">
+        <div class="main-contact">
+           @component('site.layouts._components.form_contact', ['border' => 'black-border'])
+           <p>If you have any questions, please contact our team using the form below.</p>
+           <p>Our team will respond as soon as possible.</p>
+           @endcomponent
+        </div>
+    </div>
+</div>
+@endsection
