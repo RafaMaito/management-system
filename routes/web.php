@@ -2,13 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-// using an string in the callback() place the laravel wait a controler method. 
+// using an string in the callback() place the laravel wait a controler method.
 Route::get('/',[\App\Http\Controllers\HomeController::class,'home'])->name('site.home');
 
 Route::get('/about-us',[\App\Http\Controllers\AboutUsController::class,'aboutus'])->name('site.aboutus');
- 
+
 Route::get('/contact',[\App\Http\Controllers\ContactController::class,'contact'])->name('site.contact');
- 
+Route::post('/contact',[\App\Http\Controllers\ContactController::class,'contact'])->name('site.contact');
+
 Route::get('/login', function () {
    return 'Login';
 })->name('site.login');
@@ -31,7 +32,7 @@ Route::fallback(function() {
 });
 // Route::get('/contact/{name}/{category_id}', function ($name, $category_id) {
 //    return $name . ' - ' . $category_id;
-   
+
 // });
 
 // Route::get('/about-us/{subject}/{message?}', function ($subject, $message = 'No message') {
