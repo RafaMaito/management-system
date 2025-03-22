@@ -11,7 +11,7 @@
 
     <div class="page-info">
         <div class="main-contact">
-           @component('site.layouts._components.form_contact', ['border' => 'black-border'])
+           @component('site.layouts._components.form_contact', ['border' => 'black-border', 'contact_reasons' => $contact_reasons])
            <p>If you have any questions, please contact our team using the form below.</p>
            <p>Our team will respond as soon as possible.</p>
            @endcomponent
