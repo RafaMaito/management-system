@@ -9,8 +9,8 @@
     <br>
     <select name="contact_reason" class="{{ $border }}">
         <option value="">What is the reason for your contact?</option>
-        @foreach ( $contact_reasons as $key => $contact_reason )
-            <option value="{{ $key }}" {{ old('contact_reason') == $key ? 'selected' : ''}} >{{ $contact_reason }}</option>
+        @foreach ( $contact_reasons as $contact_reason )
+            <option value="{{ $contact_reason->id }}" {{ old('contact_reason') == $contact_reason->id ? 'selected' : ''}} >{{ $contact_reason->contact_reason }}</option>
         @endforeach
     </select>
     <br>

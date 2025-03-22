@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SiteContact;
+use App\Models\ContactReason;
 
 class ContactController extends Controller
 {
     public function contact(Request $request) {
 
+        // Get all contact reasons.
+        $contact_reasons = ContactReason::all();
+        
         return view('site.contact', ['title' => 'Contact', 'contact_reasons' => $contact_reasons]);
     }
 
