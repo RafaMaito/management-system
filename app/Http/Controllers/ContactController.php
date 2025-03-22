@@ -9,13 +9,6 @@ class ContactController extends Controller
 {
     public function contact(Request $request) {
 
-        $contact_reasons = [
-            '1' => 'Question',
-            '2' => 'Complaint',
-            '3' => 'Compliment',
-        ];
-
-
         return view('site.contact', ['title' => 'Contact', 'contact_reasons' => $contact_reasons]);
     }
 
