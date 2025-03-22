@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email', 80);
             $table->integer('contact_reason');
             $table->text('message');
+            // $table->softDeletes();
         });
     }
 
