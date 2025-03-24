@@ -8,7 +8,7 @@ Route::get('/',[\App\Http\Controllers\HomeController::class,'home'])->name('site
 Route::get('/about-us',[\App\Http\Controllers\AboutUsController::class,'aboutus'])->name('site.aboutus');
 
 Route::get('/contact',[\App\Http\Controllers\ContactController::class,'contact'])->name('site.contact');
-Route::post('/contact',[\App\Http\Controllers\ContactController::class,'contact'])->name('site.contact');
+Route::post('/contact',[\App\Http\Controllers\ContactController::class,'save'])->name('site.contact');
 
 Route::get('/login', function () {
    return 'Login';
