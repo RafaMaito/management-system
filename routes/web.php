@@ -1,9 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\LogAccessMiddleware;
 
 // using an string in the callback() place the laravel wait a controler method.
-Route::get('/',[\App\Http\Controllers\HomeController::class,'home'])->name('site.home');
+Route::middleware(LogAccessMiddleware::class)
+    ->get('/',[\App\Http\Controllers\HomeController::class,'home'])
+    ->name('site.home');
 
 Route::get('/about-us',[\App\Http\Controllers\AboutUsController::class,'aboutus'])->name('site.aboutus');
 
