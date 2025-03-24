@@ -12,7 +12,7 @@ class ContactController extends Controller
 
         // Get all contact reasons.
         $contact_reasons = ContactReason::all();
-        
+
         return view('site.contact', ['title' => 'Contact', 'contact_reasons' => $contact_reasons]);
     }
 
@@ -23,10 +23,12 @@ class ContactController extends Controller
             'name' => 'required|min:3|max:30',
             'phone' => 'required|min:14|max:15',
             'email' => 'required|email',
-            'contact_reason' => 'required',
+            'contact_reasons_id' => 'required',
             'message' => 'required|max:2000'
         ]);
-        // SiteContact::create($request->all());
+        SiteContact::create($request->all());
+
+        return redirect()->route('site.home')->with('success', 'Your message has been sent successfully!');
     }
 }
 // Study the code below:
