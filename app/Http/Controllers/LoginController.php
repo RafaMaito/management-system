@@ -12,7 +12,7 @@ class LoginController extends Controller
         $error = '';
         if ($request->get('error') == 1) {
             $error = 'Invalid credentials.';
-        } 
+        }
         return view('site.login', ['title' => 'Login', 'error' => $error]);
     }
 
@@ -40,10 +40,23 @@ class LoginController extends Controller
         $user = User::where('email', $email)->where('password', $password)->get()->first();
 
         if (isset($user->name)) {
-            echo 'User found';
+
+            session_start();
+            $_SESSION['name'] = $user->name;
+            $_SESSION['email'] = $user->email;
+
+            return redirect()->route('market.clienthome');
         } else {
             return redirect()->route('site.login', ['error' => 1])->with('error', 'Invalid credentials.');
         }
+
+    }
+
+    public function logout() {
+        if (isset($_SESSION['name'])) {
+            session_destroy();
+        }
+        return redirect()->route('site.login');
 
     }
 }

@@ -11,7 +11,6 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = ['Sup1', 'Sup2', 'Sup3', 'Sup4', 'Sup5'];
-        return view('market.supplier.index', compact('suppliers'));
+        return view('market.supplier', ['title' => 'Supplier']);
     }
 }
