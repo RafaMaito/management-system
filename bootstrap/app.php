@@ -11,7 +11,23 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+
+        // Middleware aliases.
+        $middleware->alias([
+            'log.access' => \App\Http\Middleware\LogAccessMiddleware::class,
+        ]);
+
+        // Middleware global of the application (executed in all routes).
+        $middleware->group('web', [
+           // \App\Http\Middleware\LogAccessMiddleware::class
+
+        ]);
+
+        // Middleware group "api" of the application (executed in all routes).
+        $middleware->group('api', [
+
+        ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

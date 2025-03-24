@@ -1,12 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\LogAccessMiddleware;
+
 
 // using an string in the callback() place the laravel wait a controler method.
-Route::middleware(LogAccessMiddleware::class)
-    ->get('/',[\App\Http\Controllers\HomeController::class,'home'])
-    ->name('site.home');
+Route::get('/',[\App\Http\Controllers\HomeController::class,'home'])->name('site.home');
 
 Route::get('/about-us',[\App\Http\Controllers\AboutUsController::class,'aboutus'])->name('site.aboutus');
 
@@ -15,7 +13,7 @@ Route::post('/contact',[\App\Http\Controllers\ContactController::class,'save'])-
 
 Route::get('/login', function () {
    return 'Login';
-})->name('site.login');
+})->name('site.login')->middleware('log.access');
 
 Route::prefix('market')->group(function() {
     Route::get('/users', function () {

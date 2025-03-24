@@ -20,6 +20,6 @@ class LogAccessMiddleware
         $route = $request->route()->getName();
         $log = "Access from IP $ip to route $route";
         LogAccess::create(['log' => $log]);
-        return $next($request);
+        return response('test'); //$next($request);
     }
 }
