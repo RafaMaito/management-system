@@ -11,18 +11,21 @@ Route::get('/about-us',[\App\Http\Controllers\AboutUsController::class,'aboutus'
 Route::get('/contact',[\App\Http\Controllers\ContactController::class,'contact'])->name('site.contact');
 Route::post('/contact',[\App\Http\Controllers\ContactController::class,'save'])->name('site.contact');
 
-Route::get('/login', function () {
-   return 'Login';
-})->name('site.login')->middleware('log.access');
+Route::get('/login/{error?}', [\App\Http\Controllers\LoginController::class,'index'])->name('site.login');
+Route::post('/login', [\App\Http\Controllers\LoginController::class,'authenticate'])->name('site.login');
 
 Route::middleware('market')->prefix('market')->group(function() {
-    Route::get('/users', function () { return 'Users'; })->name('market.users');
+    Route::get('/user', function () { return 'Users'; })->name('market.user');
 
-    Route::get('/clients', function () { return 'Clients'; })->name('market.clients');
+    Route::get('/client-home', [\App\Http\Controllers\ClientHomeController::class,'index'])->name('market.clienthome');
 
-    Route::get('/suppliers',[\App\Http\Controllers\SupplierController::class,'index'])->name('market.supplier');
+    Route::get('/logout', [\App\Http\Controllers\LoginController::class,'logout'])->name('market.logout');
 
-    Route::get('/products', function () { return 'Products'; })->name('market.products');
+    Route::get('/client', [\App\Http\Controllers\ClientController::class,'index'])->name('market.client');
+
+    Route::get('/supplier',[\App\Http\Controllers\SupplierController::class,'index'])->name('market.supplier');
+
+    Route::get('/product', [\App\Http\Controllers\ProductController::class,'index'])->name('market.product');
 });
 
 Route::fallback(function() {
