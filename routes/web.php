@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 // using an string in the callback() place the laravel wait a controler method.
 Route::get('/',[\App\Http\Controllers\HomeController::class,'home'])->name('site.home');
 
@@ -12,19 +13,16 @@ Route::post('/contact',[\App\Http\Controllers\ContactController::class,'save'])-
 
 Route::get('/login', function () {
    return 'Login';
-})->name('site.login');
+})->name('site.login')->middleware('log.access');
 
-Route::prefix('market')->group(function() {
-    Route::get('/users', function () {
-        return 'Users';
-    })->name('market.users');
-    Route::get('/clients', function () {
-        return 'Clients';
-    })->name('market.clients');
+Route::middleware('market')->prefix('market')->group(function() {
+    Route::get('/users', function () { return 'Users'; })->name('market.users');
+
+    Route::get('/clients', function () { return 'Clients'; })->name('market.clients');
+
     Route::get('/suppliers',[\App\Http\Controllers\SupplierController::class,'index'])->name('market.supplier');
-    Route::get('/products', function () {
-        return 'Products';
-    })->name('market.products');
+
+    Route::get('/products', function () { return 'Products'; })->name('market.products');
 });
 
 Route::fallback(function() {

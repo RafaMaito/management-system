@@ -26,9 +26,10 @@ class ContactController extends Controller
             'contact_reasons_id' => 'required',
             'message' => 'required|max:2000'
         ]);
+        
         SiteContact::create($request->all());
 
-        return redirect()->route('site.home')->with('success', 'Your message has been sent successfully!');
+        return redirect()->route('site.home');
     }
 }
 // Study the code below:
