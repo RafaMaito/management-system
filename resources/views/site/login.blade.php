@@ -16,13 +16,12 @@
             <form method="POST" action="{{ route('site.login') }}">
                 @csrf
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input name="email" type="email" id="email" placeholder="Email" value="{{ old('email') }}" required autofocus>
-                    <input name="password" type="password" id="password" placeholder="Password" required>
-                    <button type="submit">Login</button>
-                </div>
+                <input name="email" type="email" placeholder="Email" value="{{ old('email') }}" >
+                <br>
+                <input name="password" type="password" id="password" placeholder="Password" >
+                <button type="submit">Login</button>
             </form>
+            {{ isset($error) && $error != '' ? $error : '' }}
         </div>
     </div>
 </div>

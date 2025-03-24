@@ -28,7 +28,7 @@
             <div class="contact">
                 <h1>Contact</h1>
                 <p>If you have any questions, please contact our team using the form below.</p>
-                @component('site.layouts._components.form_contact', ['border' => 'white-border', 'contact_reasons' => $contact_reasons, 'errors' => $errors])@endcomponent
+                @component('site.layouts._components.form_contact', ['border' => 'white-border', 'contact_reasons' => $contact_reasons])@endcomponent
             </div>
         </div>
     </div>

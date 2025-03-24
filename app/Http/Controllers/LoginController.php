@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class LoginController extends Controller
 {
-    public function index () {
-        return view('site.login', ['title' => 'Login']);
+    public function index (Request $request) {
+
+        $error = '';
+        if ($request->get('error') == 1) {
+            $error = 'Invalid credentials.';
+        } 
+        return view('site.login', ['title' => 'Login', 'error' => $error]);
     }
 
     public function authenticate(Request $request) {
@@ -27,6 +33,17 @@ class LoginController extends Controller
 
         $request->validate($rules, $messages);
 
-        print_r($request->all());
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        // Check if the user exists.
+        $user = User::where('email', $email)->where('password', $password)->get()->first();
+
+        if (isset($user->name)) {
+            echo 'User found';
+        } else {
+            return redirect()->route('site.login', ['error' => 1])->with('error', 'Invalid credentials.');
+        }
+
     }
 }
