@@ -11,9 +11,8 @@ Route::get('/about-us',[\App\Http\Controllers\AboutUsController::class,'aboutus'
 Route::get('/contact',[\App\Http\Controllers\ContactController::class,'contact'])->name('site.contact');
 Route::post('/contact',[\App\Http\Controllers\ContactController::class,'save'])->name('site.contact');
 
-Route::get('/login', function () {
-   return 'Login';
-})->name('site.login')->middleware('log.access');
+Route::get('/login', [\App\Http\Controllers\LoginController::class,'index'])->name('site.login');
+Route::post('/login', [\App\Http\Controllers\LoginController::class,'authenticate'])->name('site.login');
 
 Route::middleware('market')->prefix('market')->group(function() {
     Route::get('/users', function () { return 'Users'; })->name('market.users');
