@@ -14,12 +14,12 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Middleware aliases.
         $middleware->alias([
-            'log.access' => \App\Http\Middleware\LogAccessMiddleware::class,
+
         ]);
 
         // Middleware global of the application (executed in all routes).
         $middleware->group('web', [
-           // \App\Http\Middleware\LogAccessMiddleware::class
+            \App\Http\Middleware\LogAccessMiddleware::class
 
         ]);
 
@@ -27,6 +27,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->group('api', [
 
         ]);
+
+        $middleware->group('market', [
+            \App\Http\Middleware\AuthenticationMiddleware::class,
+         ]);
 
     })
     ->withExceptions(function (Exceptions $exceptions) {

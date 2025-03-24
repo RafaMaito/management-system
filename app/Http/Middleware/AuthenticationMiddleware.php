@@ -5,9 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\LogAccess;
 
-class LogAccessMiddleware
+class AuthenticationMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,11 +15,6 @@ class LogAccessMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $ip = $request->ip();
-        $route = $request->route()->getName();
-        $log = "Access from IP $ip to route $route";
-        LogAccess::create(['log' => $log]);
-        //return response('test');
-        return $next($request);
+        return Response('Test Authentication Middleware');
     }
 }
