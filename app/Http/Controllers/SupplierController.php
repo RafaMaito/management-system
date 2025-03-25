@@ -11,6 +11,6 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return view('market.supplier', ['title' => 'Supplier']);
+        return view('market.supplier.index', ['title' => 'Supplier']);
     }
 }

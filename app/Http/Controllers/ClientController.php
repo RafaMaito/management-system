@@ -8,6 +8,6 @@ class ClientController extends Controller
 {
     public function index()
     {
-        return view('market.client', ['title' => 'Client']);
+        return view('market.client.index', ['title' => 'Client']);
     }
 }
