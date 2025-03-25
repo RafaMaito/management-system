@@ -5,8 +5,10 @@
 @section('content')
 
 <div class="page-content">
-    <div class="page-title">
-        <h1>Get in Touch with Us</h1>
+    <div class="page-title-market">
+        <h1>Supplier</h1>
     </div>
+
+    <div class="menu"
 </div>
 @endsection
