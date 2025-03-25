@@ -1,12 +1,12 @@
-<h3> Suppliers </h3>
+@extends('market.layouts.base')
 
-{{-- @dd($suppliers) --}}
-@isset($suppliers)
-    
-    @foreach($suppliers as $supplier)
-        Company: {{ $loop->iteration }}
-        <br>
-        {{ $supplier}} 
-        <br>
-    @endforeach
-@endisset
+@section('title', $title)
+
+@section('content')
+
+<div class="page-content">
+    <div class="page-title">
+        <h1>Get in Touch with Us</h1>
+    </div>
+</div>
+@endsection
