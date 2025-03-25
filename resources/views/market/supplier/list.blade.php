@@ -6,7 +6,7 @@
 
 <div class="page-content">
     <div class="page-title-market">
-        <h1>Supplier</h1>
+        <h1>Suppliers</h1>
     </div>
 
     <div class="menu">
@@ -18,15 +18,7 @@
 
     <div class="page-info">
         <div style="width: 30%; margin-left: auto; margin-right: auto;">
-            <form method="POST" action="{{ route('market.supplier.list') }}">
-                @csrf
 
-                <input type="text" name="name" placeholder="Name">
-                <input type="text" name="site" placeholder="Site">
-                <input type="text" name="uf" placeholder="UF">
-                <input type="text" name="email" placeholder="Email">
-                <button type="submit">Search</button>
-            </form>
         </div>
     </div>
 </div>
