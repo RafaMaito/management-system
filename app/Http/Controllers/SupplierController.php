@@ -53,12 +53,12 @@ class SupplierController extends Controller
 
     public function list(Request $request)
     {
-        $suppliers = Supplier::where('name', 'like', '%'.$request->input('name').'%')->get();
+        $suppliers = Supplier::where('name', 'like', '%'.$request->input('name').'%')->paginate(5);
         if (empty($suppliers)) {
             $suppliers = Supplier::where('id', 'like', $request->$supplier->id)->get();
         }
 
-        return view('market.supplier.list', ['title' => 'Suppliers List', 'suppliers' => $suppliers]);
+        return view('market.supplier.list', ['title' => 'Suppliers List', 'suppliers' => $suppliers, 'request' => $request->all()]);
     }
 
     public function edit($id, $msg = '')
@@ -67,5 +67,17 @@ class SupplierController extends Controller
         $supplier = Supplier::find($id);
 
         return view('market.supplier.register', ['title' => 'Edit Supplier', 'supplier' => $supplier, 'button_func' => $button_func, 'msg_supplier' => $msg]);
+    }
+
+    public function delete($id)
+    {
+        Supplier::find($id)->delete();
+        // To remove the supplier completaly,
+        // we need to use the function below
+        // because the supplier model is using softdelete
+        // Supplier::find($id)->forceDelete();
+        $msg_del = 'Supplier with the ID = '.$id.' was deleted';
+
+        return redirect()->route('market.supplier')->with('msg', $msg_del);
     }
 }

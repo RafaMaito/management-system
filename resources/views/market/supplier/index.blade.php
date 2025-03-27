@@ -17,6 +17,12 @@
         </div>
 
         <div class="page-info">
+            @if (session('msg'))
+                <div class="message-successful" id="msgDelete">
+                    {{ session('msg') }}
+                    <button onclick="document.getElementById('msgDelete').style.display='none'" >Close</button>
+                </div>
+            @endif
             <h2>Search Suppliers</h2>
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
                 <form method="POST" action="{{ route('market.supplier.list') }}">

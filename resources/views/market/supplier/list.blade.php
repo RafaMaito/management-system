@@ -36,10 +36,12 @@
                                 <td>{{ $supplier->uf }}</td>
                                 <td>{{ $supplier->email }}</td>
                                 <td><a href="{{ route('market.supplier.edit', $supplier->id) }}">Edit</a></td>
+                                <td><a href="{{ route('market.supplier.delete', $supplier->id) }}">Delete</a></td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                {{ $suppliers->appends($request)->links() }}
             </div>
         </div>
     </div>
