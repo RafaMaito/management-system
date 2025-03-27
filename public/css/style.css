@@ -194,3 +194,28 @@ button:hover {
 .social-media img {
     margin: 0px 15px 0px 15px;
 }
+
+.message-successful {
+    background-color: rgb(171, 228, 171);
+    border: 1px solid green;
+    width: 30%;
+    margin: 0 auto 10px auto;
+    padding: 10px;
+    position: relative;
+    color: #155724;
+    border-radius: 5px;
+    line-height: 1.5; 
+    text-align: center;
+}
+
+.message-successful button {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #155724;
+}

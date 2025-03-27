@@ -28,6 +28,7 @@ Route::middleware('market')->prefix('market')->group(function () {
     Route::match(['get', 'post'], '/supplier/register', [App\Http\Controllers\SupplierController::class, 'register'])->name('market.supplier.register');
     Route::match(['get', 'post'], '/supplier/list', [App\Http\Controllers\SupplierController::class, 'list'])->name('market.supplier.list');
     Route::match(['get', 'post'], '/supplier/edit/{id}/{msg?}', [App\Http\Controllers\SupplierController::class, 'edit'])->name('market.supplier.edit');
+    Route::match(['get', 'post'], '/supplier/delete/{id}', [App\Http\Controllers\SupplierController::class, 'delete'])->name('market.supplier.delete');
 
     Route::get('/product', [App\Http\Controllers\ProductController::class, 'index'])->name('market.product');
 });
