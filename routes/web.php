@@ -30,7 +30,8 @@ Route::middleware('market')->prefix('market')->group(function () {
     Route::match(['get', 'post'], '/supplier/edit/{id}/{msg?}', [App\Http\Controllers\SupplierController::class, 'edit'])->name('market.supplier.edit');
     Route::match(['get', 'post'], '/supplier/delete/{id}', [App\Http\Controllers\SupplierController::class, 'delete'])->name('market.supplier.delete');
 
-    Route::get('/product', [App\Http\Controllers\ProductController::class, 'index'])->name('market.product');
+    // Route using resources
+    Route::resource('product', App\Http\Controllers\ProductController::class);
 });
 
 Route::fallback(function () {
