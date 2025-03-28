@@ -38,9 +38,17 @@
                                 <td>{{ $product->description }}</td>
                                 <td>{{ $product->weight }}</td>
                                 <td>{{ $product->id }}</td>
-                                <td><a href="{{ route('product.show', ['product' => $product]) }}">View</a></td>
-                                {{-- <td><a href="{{ route('market.product.edit', $product->id) }}">Edit</a></td>
-                            <td><a href="{{ route('market.product.delete', $product->id) }}">Delete</a></td> --}}
+                                <td><a href="{{ route('product.show', $product->id) }}">View</a></td>
+                                <td><a href="{{ route('product.edit', $product->id) }}">Edit</a></td>
+                                <td>
+                                    <form id="form_{{ $product->id }}" method="POST"
+                                        action="{{ route('product.destroy', ['product' => $product->id]) }}">
+                                        @method('DELETE')
+                                        @csrf
+                                        <a href="#"
+                                            onclick="document.getElementById('form_{{ $product->id }}').submit()">Delete</a>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

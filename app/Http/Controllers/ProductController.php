@@ -24,9 +24,8 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         $units = Unit::all();
-        $button_func = 'Create';
 
-        return view('market.product.create', ['title' => 'Create a Product', 'button_func' => $button_func, 'units' => $units]);
+        return view('market.product.create', ['title' => 'Create a Product', 'units' => $units]);
     }
 
     /**
@@ -59,21 +58,33 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
+        $product = Product::findOrFail($id);
+        $units = Unit::all();
+
+        return view('market.product.create', ['title' => 'Edit Product', 'product' => $product, 'units' => $units]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
+        $product = Product::findOrFail($id);
+        $product->update($request->all());
+
+        return redirect()->route('product.show', ['product' => $product->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect()->route('product.index');
     }
 }
