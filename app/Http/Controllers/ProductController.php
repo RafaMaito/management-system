@@ -25,7 +25,7 @@ class ProductController extends Controller
     {
         $units = Unit::all();
 
-        return view('market.product.create', ['title' => 'Create a Product', 'units' => $units]);
+        return view('market.product.create', ['title' => 'Create a Product', 'units' => $units, 'product' => null]);
     }
 
     /**
