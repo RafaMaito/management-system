@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\ProductDetail;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 
@@ -15,15 +14,6 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::paginate(5);
-        // Get the products with their details from product_details table.
-        foreach ($products as $key => $product) {
-            $product_detail = ProductDetail::where('product_id', $product->id)->first();
-            if ($product_detail) {
-                $products[$key]['length'] = $product_detail->length;
-                $products[$key]['height'] = $product_detail->height;
-                $products[$key]['width'] = $product_detail->width;
-            }
-        }
 
         return view('market.product.index', ['title' => 'Products', 'products' => $products, 'request' => $request->all()]);
     }
