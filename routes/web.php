@@ -32,6 +32,7 @@ Route::middleware('market')->prefix('market')->group(function () {
 
     // Route using resources
     Route::resource('product', App\Http\Controllers\ProductController::class);
+    Route::resource('product-detail', App\Http\Controllers\ProductDetailController::class);
 });
 
 Route::fallback(function () {
