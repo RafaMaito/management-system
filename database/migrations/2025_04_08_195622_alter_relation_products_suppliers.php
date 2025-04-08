@@ -34,7 +34,7 @@ return new class extends Migration {
     {
         // Dropping the foreign key and the column from the products table
         Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign(['products_supplier_id_foreign']);
+            $table->dropForeign(['supplier_id']);
             $table->dropColumn('supplier_id');
         });
     }
