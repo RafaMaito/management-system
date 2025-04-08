@@ -17,6 +17,11 @@
         </div>
 
         <div class="page-info">
+
+            <h4>Product</h4>
+            <div> Name: {{ $product_detail->product->name ?? '' }}</div>
+            <div> Description: {{ $product_detail->product->description ?? '' }}</div>
+
             <h2>{{ $title }}</h2>
             {{ $msg_product ?? '' }}
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
