@@ -22,16 +22,12 @@ Route::middleware('market')->prefix('market')->group(function () {
 
     Route::get('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('market.logout');
 
-    Route::get('/client', [App\Http\Controllers\ClientController::class, 'index'])->name('market.client');
-
-    Route::get('/supplier', [App\Http\Controllers\SupplierController::class, 'index'])->name('market.supplier');
-    Route::match(['get', 'post'], '/supplier/register', [App\Http\Controllers\SupplierController::class, 'register'])->name('market.supplier.register');
-    Route::match(['get', 'post'], '/supplier/list', [App\Http\Controllers\SupplierController::class, 'list'])->name('market.supplier.list');
-    Route::match(['get', 'post'], '/supplier/edit/{id}/{msg?}', [App\Http\Controllers\SupplierController::class, 'edit'])->name('market.supplier.edit');
-    Route::match(['get', 'post'], '/supplier/delete/{id}', [App\Http\Controllers\SupplierController::class, 'delete'])->name('market.supplier.delete');
-
     // Route using resources
+    Route::resource('supplier', App\Http\Controllers\SupplierController::class);
+    Route::resource('client', App\Http\Controllers\ClientController::class);
+    Route::resource('order', App\Http\Controllers\ClientController::class);
     Route::resource('product', App\Http\Controllers\ProductController::class);
+    Route::resource('product-order', App\Http\Controllers\ProductOrderController::class);
     Route::resource('product-detail', App\Http\Controllers\ProductDetailController::class);
 });
 
