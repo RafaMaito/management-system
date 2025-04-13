@@ -18,8 +18,6 @@ Route::middleware('market')->prefix('market')->group(function () {
         return 'Users';
     })->name('market.user');
 
-    Route::get('/client-home', [App\Http\Controllers\ClientHomeController::class, 'index'])->name('market.clienthome');
-
     Route::get('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('market.logout');
 
     // Route using resources
