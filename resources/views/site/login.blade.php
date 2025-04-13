@@ -18,7 +18,9 @@
 
                 <input name="email" type="email" placeholder="Email" value="{{ old('email') }}" >
                 <br>
+                {{ $errors->has('email') ? $errors->first('email') : ''}}
                 <input name="password" type="password" id="password" placeholder="Password" >
+                {{ $errors->has('password') ? $errors->first('password') : ''}}
                 <button type="submit">Login</button>
             </form>
             {{ isset($error) && $error != '' ? $error : '' }}

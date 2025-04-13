@@ -19,7 +19,15 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Middleware global of the application (executed in all routes).
         $middleware->group('web', [
-            \App\Http\Middleware\LogAccessMiddleware::class
+            \App\Http\Middleware\LogAccessMiddleware::class,
+            // Initiate the session for thhe old session
+            \Illuminate\Session\Middleware\StartSession::class,
+
+            // Share the errors from the session with the views
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+
+            // CSRF Protection
+            \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
 
         ]);
 

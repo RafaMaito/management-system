@@ -10,17 +10,18 @@
                 <h1>Management System</h1>
                 <p>Business management software ideal for your company.</p>
                 <div class="call-to-action">
-                    <img src="/img/check.png">
+                    <img src="{{ asset('/img/check.png') }}" alt="Check">
                     <span class="white-text">Complete and uncomplicated management</span>
                 </div>
                 <div class="call-to-action">
-                    <img src="img/check.png">
+                    img src="{{ asset('/img/check.png') }}" alt="Check">
                     <span class="white-text">Your company in the cloud</span>
                 </div>
             </div>
 
             <div class="video">
-                <img src="img/player_video.jpg">
+
+                <img src="{{ asset('img/player_video.jpg') }}" alt="Player">
             </div>
         </div>
 
