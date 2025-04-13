@@ -11,28 +11,49 @@
 
         <div class="menu">
             <ul>
-                <li><a href="{{ route('market.supplier.register') }}">Register</a></li>
-                <li><a href="{{ route('market.supplier') }}">Search</a></li>
+                <li><a href="{{ route('supplier.create') }}">Register</a></li>
+                <li><a href="{{ route('supplier.index') }}">Search</a></li>
             </ul>
         </div>
 
         <div class="page-info">
-            @if (session('msg'))
-                <div class="message-successful" id="msgDelete">
-                    {{ session('msg') }}
-                    <button onclick="document.getElementById('msgDelete').style.display='none'" >Close</button>
-                </div>
-            @endif
-            <h2>Search Suppliers</h2>
-            <div style="width: 30%; margin-left: auto; margin-right: auto;">
-                <form method="POST" action="{{ route('market.supplier.list') }}">
-                    @csrf
-                    <input type="text" name="name" placeholder="Name">
-                    <input type="text" name="site" placeholder="Site">
-                    <input type="text" name="uf" placeholder="UF">
-                    <input type="text" name="email" placeholder="Email">
-                    <button type="submit">Search</button>
-                </form>
+            <h2>{{ $title }}</h2>
+            <div class="table-container" style="width: 80%; margin: 0 auto;">
+                <table border="1" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Site</th>
+                            <th>UF</th>
+                            <th>Email</th>
+                            <th>View</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($suppliers as $supplier)
+                            <tr>
+                                <td>{{ $supplier->name }}</td>
+                                <td>{{ $supplier->site }}</td>
+                                <td>{{ $supplier->uf }}</td>
+                                <td>{{ $supplier->email }}</td>
+                                <td><a href="{{ route('supplier.show', $supplier->id) }}">View</a></td>
+                                <td><a href="{{ route('supplier.edit', $supplier->id) }}">Edit</a></td>
+                                <td>
+                                    <form id="form_{{ $supplier->id }}" method="POST"
+                                        action="{{ route('supplier.destroy', ['supplier' => $supplier->id]) }}">
+                                        @method('DELETE')
+                                        @csrf
+                                        <a href="#"
+                                            onclick="document.getElementById('form_{{ $supplier->id }}').submit()">Delete</a>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                {{-- {{ $suppliers->appends($request)->links() }} --}}
             </div>
         </div>
     </div>

@@ -11,8 +11,8 @@
 
         <div class="menu">
             <ul>
-                <li><a href="{{ route('market.supplier.register') }}">Register</a></li>
-                <li><a href="{{ route('market.supplier') }}">Search</a></li>
+                <li><a href="{{ route('supplier.create') }}">Register</a></li>
+                <li><a href="{{ route('supplier.list') }}">Search</a></li>
             </ul>
         </div>
 
@@ -35,9 +35,29 @@
                                 <td>{{ $supplier->site }}</td>
                                 <td>{{ $supplier->uf }}</td>
                                 <td>{{ $supplier->email }}</td>
-                                <td><a href="{{ route('market.supplier.edit', $supplier->id) }}">Edit</a></td>
-                                <td><a href="{{ route('market.supplier.delete', $supplier->id) }}">Delete</a></td>
+                                <td><a href="{{ route('supplier.create', $supplier->id) }}">Edit</a></td>
+                                <td><a href="{{ route('supplier.delete', $supplier->id) }}">Delete</a></td>
                             </tr>
+                            @if ($supplier->products->isNotEmpty())
+                                <tr>
+                                    <td colspan="6">
+                                        <table border="1" style="margin: 20px; position: center;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Product name</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($supplier->products as $product)
+                                                    <tr>
+                                                        <td>{{ $product->name }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

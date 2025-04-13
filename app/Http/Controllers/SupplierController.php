@@ -2,82 +2,76 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
-    private $button_func = '';
-
     /**
      * Handle the incoming request.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('market.supplier.index', ['title' => 'Supplier']);
+        $suppliers = Supplier::all();
+
+        return view('market.supplier.index', ['title' => 'Suppliers', 'suppliers' => $suppliers]);
     }
 
-    public function register(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(Request $request)
     {
-        $msg_supplier = '';
-        $button_func = 'Register';
-        if (!empty($request->input('_token'))) {
-            if (empty($request->input('id'))) {
-                $request->validate([
-                    'name' => 'required|min:3|max:30',
-                    'site' => 'required',
-                    'uf' => 'required|min:2|max:2',
-                    'email' => 'required|email',
-                ]);
+        $products = Product::all();
 
-                $supplier = new Supplier();
-                $supplier->create($request->all());
-                $msg_supplier = 'Supplier registered successfully';
-            }
-            if ($request->input('id')) {
-                $supplier = Supplier::find($request->input('id'));
-                $supplier_update = $supplier->update($request->all());
-
-                if ($supplier_update) {
-                    $msg_supplier = 'Supplier '.$supplier->name.' edited successfully';
-                } else {
-                    $msg_supplier = 'Fail to edit Supplier '.$supplier->name.'';
-                }
-
-                return redirect()->route('market.supplier.edit', ['id' => $request->input('id'), 'msg' => $msg_supplier]);
-            }
-        }
-
-        return view('market.supplier.register', ['title' => 'Register Supplier', 'msg_reg_edit' => $msg_supplier, 'button_func' => $button_func]);
+        return view('market.supplier.create', ['title' => 'Create a Supplier', 'product' => $products, 'supplier' => null]);
     }
 
-    public function list(Request $request)
+    public function store(Request $request)
     {
-        $suppliers = Supplier::where('name', 'like', '%'.$request->input('name').'%')->paginate(5);
-        if (empty($suppliers)) {
-            $suppliers = Supplier::where('id', 'like', $request->$supplier->id)->get();
-        }
+        $request->validate([
+            'name' => 'required|min:3|max:30',
+            'site' => 'required',
+            'uf' => 'required|min:2|max:2',
+            'email' => 'required|email',
+        ]);
 
-        return view('market.supplier.list', ['title' => 'Suppliers List', 'suppliers' => $suppliers, 'request' => $request->all()]);
+        Supplier::creat($request->all());
+
+        return redirect()->route('supplier.index');
     }
 
-    public function edit($id, $msg = '')
+    public function show(string $id)
     {
-        $button_func = 'Edit';
-        $supplier = Supplier::find($id);
+        $supplier = Supplier::findOrFail($id);
 
-        return view('market.supplier.register', ['title' => 'Edit Supplier', 'supplier' => $supplier, 'button_func' => $button_func, 'msg_supplier' => $msg]);
+        return view('market.supplier.show', ['title' => 'Supplier', 'supplier' => $supplier]);
     }
 
-    public function delete($id)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
     {
-        Supplier::find($id)->delete();
-        // To remove the supplier completaly,
-        // we need to use the function below
-        // because the supplier model is using softdelete
-        // Supplier::find($id)->forceDelete();
-        $msg_del = 'Supplier with the ID = '.$id.' was deleted';
+        $supplier = Supplier::findOrFail($id);
 
-        return redirect()->route('market.supplier')->with('msg', $msg_del);
+        return view('market.supplier.create', ['title' => 'Edit Supplier', 'products' => null, 'supplier' => $supplier]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $supplier = Supplier::findOrFail($id);
+        $supplier->update($request->all());
+
+        return redirect()->route('supplier.show', ['supplier' => $supplier->id]);
+    }
+
+    public function destroy($id)
+    {
+        $supplier = Supplier::findOrFail($id);
+        $supplier->delete();
+
+        return redirect()->route('supplier.index');
     }
 }
