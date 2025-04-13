@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Supplier;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 
@@ -24,8 +25,9 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         $units = Unit::all();
+        $suppliers = Supplier::all();
 
-        return view('market.product.create', ['title' => 'Create a Product', 'units' => $units, 'product' => null]);
+        return view('market.product.create', ['title' => 'Create a Product', 'units' => $units, 'product' => null, 'suppliers' => $suppliers]);
     }
 
     /**
@@ -38,6 +40,7 @@ class ProductController extends Controller
             'description' => 'required|min:3|max:2000',
             'weight' => 'required|integer',
             'unit_id' => 'exists:units,id',
+            'supplier_id' => 'exists:supplier_id',
         ]);
 
         Product::create($request->all());
@@ -61,9 +64,10 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
+        $suppliers = Supplier::all();
         $units = Unit::all();
 
-        return view('market.product.create', ['title' => 'Edit Product', 'product' => $product, 'units' => $units]);
+        return view('market.product.create', ['title' => 'Edit Product', 'product' => $product, 'units' => $units, 'suppliers' => $suppliers]);
     }
 
     /**

@@ -4,6 +4,16 @@
     @if (isset($product))
         @method('PUT')
     @endif
+
+    <select name="supplier_id">
+        <option>Select the supplier</option>
+        @foreach ($suppliers as $supplier)
+            <option value="{{ $supplier->id }}"
+                {{ ($product->supplier_id ?? old('supplier_id')) == $supplier->id ? 'selected' : '' }}>
+                {{ $supplier->name }}</option>
+        @endforeach
+    </select>
+    {{ $errors->has('supplier_id') ? $errors->first('supplier_id') : '' }}
     <input type="text" name="name" value="{{ $product->name ?? old('name') }}" placeholder="Name">
     {{ $errors->has('name') ? $errors->first('name') : '' }}
 

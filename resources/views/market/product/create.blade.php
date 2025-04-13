@@ -18,9 +18,12 @@
 
         <div class="page-info">
             <h2>{{ $title }}</h2>
-            {{ $msg_product ?? '' }}
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
-                @component('market.product._components.form_create_edit', ['product' => $product, 'units' => $units])
+                @component('market.product._components.form_create_edit', [
+                    'product' => $product,
+                    'units' => $units,
+                    'suppliers' => $suppliers,
+                ])
                 @endcomponent
             </div>
         </div>
