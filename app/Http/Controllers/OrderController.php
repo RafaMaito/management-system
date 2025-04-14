@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -11,15 +13,19 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::paginate(5);
+
+        return view('market.order.index', ['title' => 'Orders', 'orders' => $orders]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $clients = Client::all();
+
+        return view('market.order.create', ['title' => 'Create a Order', 'clients' => $clients, 'order' => null]);
     }
 
     /**
@@ -27,7 +33,15 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'client_id' => 'required|exists:clients,id',
+        ]);
+
+        $order = new Order();
+        $order->client_id = $request->input('client_id');
+        $order->save();
+
+        return redirect()->route('order.index');
     }
 
     /**
@@ -35,7 +49,6 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**
@@ -43,7 +56,6 @@ class OrderController extends Controller
      */
     public function edit(string $id)
     {
-        //
     }
 
     /**
@@ -51,7 +63,6 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
     }
 
     /**
@@ -59,6 +70,5 @@ class OrderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
     }
 }

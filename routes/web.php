@@ -23,10 +23,14 @@ Route::middleware('market')->prefix('market')->group(function () {
     // Route using resources
     Route::resource('supplier', App\Http\Controllers\SupplierController::class);
     Route::resource('client', App\Http\Controllers\ClientController::class);
-    Route::resource('order', App\Http\Controllers\ClientController::class);
+    Route::resource('order', App\Http\Controllers\OrderController::class);
     Route::resource('product', App\Http\Controllers\ProductController::class);
-    Route::resource('product-order', App\Http\Controllers\ProductOrderController::class);
     Route::resource('product-detail', App\Http\Controllers\ProductDetailController::class);
+    // Route::resource('product-order', App\Http\Controllers\ProductOrderController::class);
+
+    // Custom route for N:N relationship
+    Route::get('/product-order/create/{order}', [App\Http\Controllers\ProductOrderController::class, 'create'])->name('product-order.create');
+    Route::post('/product-order/store/{order}', [App\Http\Controllers\ProductOrderController::class, 'store'])->name('product-order.store');
 });
 
 Route::fallback(function () {

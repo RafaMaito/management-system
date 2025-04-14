@@ -6,6 +6,7 @@
     <div class="menu">
         <ul>
             <li><a href="{{ route('client.index') }}">Clients</a></li>
+            <li><a href="{{ route('order.index') }}">Orders</a></li>
             <li><a href="{{ route('product.index') }}">Products</a></li>
             <li><a href="{{ route('supplier.index') }}">Suppliers</a></li>
             <li><a href="{{ route('market.logout') }}">Logout</a></li>

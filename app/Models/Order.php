@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    //
+    protected $fillable = ['name', 'description', 'weight', 'unit_id', 'supplier_id'];
 
-    public function clents()
+    public function products()
     {
-        return $this->hasMany(Order::class);
+        return $this->belongsToMany(Product::class, 'products_orders')->withPivot('created_at');
     }
 }
