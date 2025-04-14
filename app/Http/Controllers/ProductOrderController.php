@@ -38,11 +38,14 @@ class ProductOrderController extends Controller
         $request->validate([
             'product_id' => 'required|exists:products,id',
         ]);
-
-        $productOrder = new ProductOrder();
-        $productOrder->order_id = $id;
-        $productOrder->product_id = $request->get('product_id');
-        $productOrder->save();
+        $order = Order::findOrFail($id);
+        // $productOrder = new ProductOrder();
+        // $productOrder->order_id = $id;
+        // $productOrder->product_id = $request->get('product_id');
+        // $productOrder->save();
+        $order->products()->attach($request->get('product_id'), [
+            'quantity' => $request->get('quantity', 1), // Default quantity to 1 if not provided
+        ]);
 
         return redirect()->route('product-order.create', ['order' => $id]);
     }
