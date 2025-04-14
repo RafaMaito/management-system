@@ -27,6 +27,10 @@
                         <td>Email:</td>
                         <td>{{ $client->email }}</td>
                     </tr>
+                    <tr>
+                        <td>Orders:</td>
+                        <td>{{ count($client->orders) }}</td>
+                    </tr>
                 </table>
             </div>
         </div>

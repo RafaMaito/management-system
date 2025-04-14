@@ -12,4 +12,9 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class, 'products_orders')->withPivot('created_at');
     }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

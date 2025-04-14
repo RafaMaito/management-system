@@ -35,7 +35,7 @@
                         @foreach ($orders as $order)
                             <tr>
                                 <td>{{ $order->id }}</td>
-                                <td>{{ $order->client_id }}</td>
+                                <td>{{ $order->client->name }}</td>
                                 <td><a href="{{ route('product-order.create', $order->id) }}">Add products</a></td>
                                 <td><a href="{{ route('order.show', $order->id) }}">View</a></td>
                                 <td><a href="{{ route('order.edit', $order->id) }}">Edit</a></td>
