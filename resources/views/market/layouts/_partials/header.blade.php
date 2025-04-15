@@ -5,10 +5,10 @@
 
     <div class="menu">
         <ul>
-            <li><a href="{{ route('market.clienthome') }}">Home</a></li>
-            <li><a href="{{ route('market.client') }}">Client</a></li>
-            <li><a href="{{ route('product.index') }}">Product</a></li>
-            <li><a href="{{ route('market.supplier') }}">Supplier</a></li>
+            <li><a href="{{ route('client.index') }}">Clients</a></li>
+            <li><a href="{{ route('order.index') }}">Orders</a></li>
+            <li><a href="{{ route('product.index') }}">Products</a></li>
+            <li><a href="{{ route('supplier.index') }}">Suppliers</a></li>
             <li><a href="{{ route('market.logout') }}">Logout</a></li>
         </ul>
     </div>

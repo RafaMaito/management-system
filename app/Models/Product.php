@@ -15,4 +15,9 @@ class Product extends Model
         // Product has a product detail.
         return $this->hasOne('App\Models\ProductDetail');
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'products_orders')->withPivot('created_at');
+    }
 }
