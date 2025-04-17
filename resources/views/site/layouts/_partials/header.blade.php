@@ -8,7 +8,7 @@
             <li><a href="{{ route('site.home') }}">Home</a></li>
             <li><a href="{{ route('site.aboutus') }}">About us</a></li>
             <li><a href="{{ route('site.contact') }}">Contact</a></li>
-            <li><a href="{{ route('site.login') }}">Login</a></li>
+            <li><a href="{{ route('login') }}">Login</a></li>
         </ul>
     </div>
 </div>

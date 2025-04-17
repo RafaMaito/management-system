@@ -2,20 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\ContactReason;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -23,6 +13,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // Get all contact reasons.
+        $contact_reasons = ContactReason::all();
+
+        return view('site.home', ['contact_reasons' => $contact_reasons]);
     }
 }
