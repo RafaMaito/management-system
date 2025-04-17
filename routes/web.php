@@ -45,3 +45,6 @@ Route::fallback(function () {
 // Route::get('/about-us/{subject}/{message?}', function ($subject, $message = 'No message') {
 //     return $subject . ' - ' . $message;
 // })->where(['subject' => '[0-9]+', 'message' => '[A-Za-z]+']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
