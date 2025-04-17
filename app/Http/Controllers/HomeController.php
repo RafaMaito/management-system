@@ -16,6 +16,6 @@ class HomeController extends Controller
         // Get all contact reasons.
         $contact_reasons = ContactReason::all();
 
-        return view('site.home', ['contact_reasons' => $contact_reasons]);
+        return view('home', ['contact_reasons' => $contact_reasons]);
     }
 }

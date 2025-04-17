@@ -25,7 +25,7 @@ class SupplierController extends Controller
     {
         $products = Product::all();
 
-        return view('market.supplier.create', ['title' => 'Create a Supplier', 'product' => $products, 'supplier' => null]);
+        return view('market.supplier.create', ['title' => 'Create a Supplier', 'products' => $products, 'supplier' => null]);
     }
 
     public function store(Request $request)
