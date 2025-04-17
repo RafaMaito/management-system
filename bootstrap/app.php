@@ -17,6 +17,9 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Middleware global of the application (executed in all routes).
         $middleware->group('web', [
+            // Initiate the session for thhe old session
+            // and start the session for the new session
+            Illuminate\Session\Middleware\StartSession::class,
             // Share the errors from the session with the views
             Illuminate\View\Middleware\ShareErrorsFromSession::class,
         ]);
