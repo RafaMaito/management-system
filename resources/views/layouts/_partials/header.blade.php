@@ -15,16 +15,13 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('client.index') }}">{{ __('Client') }}</a>
+                    <a class="nav-link" href="{{ route('site.home') }}">{{ __('Home') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('supplier.index') }}">{{ __('Supplier') }}</a>
+                    <a class="nav-link" href="{{ route('site.aboutus') }}">{{ __('About-us') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('product.index') }}">{{ __('Product') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('order.index') }}">{{ __('Order') }}</a>
+                    <a class="nav-link" href="{{ route('site.contact') }}">{{ __('Contact') }}</a>
                 </li>
             </ul>
 

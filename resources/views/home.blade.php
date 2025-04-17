@@ -1,4 +1,4 @@
-@extends('site.layouts.base')
+@extends('layouts.app')
 
 @section('title', 'Home')
 
@@ -29,7 +29,11 @@
             <div class="contact">
                 <h1>Contact</h1>
                 <p>If you have any questions, please contact our team using the form below.</p>
-                @component('site.layouts._components.form_contact', ['border' => 'white-border', 'contact_reasons' => $contact_reasons])@endcomponent
+                @component('layouts._components.form_contact', [
+                    'border' => 'white-border',
+                    'contact_reasons' => $contact_reasons,
+                ])
+                @endcomponent
             </div>
         </div>
     </div>

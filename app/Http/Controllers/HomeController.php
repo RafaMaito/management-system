@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\ContactReason;
 
 class HomeController extends Controller
 {
-    public function home() {
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
         // Get all contact reasons.
         $contact_reasons = ContactReason::all();
 
-        return view('site.home', ['contact_reasons' => $contact_reasons]);
+        return view('home', ['contact_reasons' => $contact_reasons]);
     }
 }

@@ -1,4 +1,4 @@
-@extends('market.layouts.base')
+@extends('market.layouts.app')
 
 @section('title', $title)
 
