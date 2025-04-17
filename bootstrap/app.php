@@ -22,6 +22,8 @@ return Application::configure(basePath: dirname(__DIR__))
             Illuminate\Session\Middleware\StartSession::class,
             // Share the errors from the session with the views
             Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            // CSRF Protection
+            Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
         ]);
 
         // Middleware group "api" of the application (executed in all routes).
